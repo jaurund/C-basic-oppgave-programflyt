@@ -1,3 +1,4 @@
+// holds structure to handle temperature ranges
 public class TemperatureRanges
 {
     public double FreezerMin { get; }

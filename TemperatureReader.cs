@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Globalization;
 
+// Reads temperatures from file, and throws errors to the console if the data is invalid or corrupted.
+
 public class TemperatureReader
 {
     public TemperatureData? ReadFromFile(string filePath)
@@ -41,7 +43,9 @@ public class SimulatedSensorReader
             string[] parts = line.Split(',');
             if (parts.Length != 3)
             {
-                Console.WriteLine("Corrupted data from sensor(s): wrong format. Check input data or sensor(s).");
+                Console.WriteLine(
+                    "Corrupted data from sensor(s): wrong format. Check input data or sensor(s)."
+                );
                 return null;
             }
 

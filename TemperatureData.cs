@@ -1,3 +1,5 @@
+// defines classes for the different temperature data types
+
 public class TemperatureData
 {
     public double FreezerTemp { get; }

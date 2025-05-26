@@ -1,3 +1,5 @@
+// Checks temperatures from file, and defines them against set ranges in tempRanges.txt
+
 public class TemperatureChecker
 {
     public void CheckTemperatures(TemperatureData temps, TemperatureRanges ranges)
