@@ -4,7 +4,7 @@ using System.Globalization;
 
 public class TemperatureReader
 {
-    public TemperatureData ReadFromFile(string filePath)
+    public TemperatureData? ReadFromFile(string filePath)
     {
         string[] lines = File.ReadAllLines(filePath);
 
@@ -18,7 +18,7 @@ public class TemperatureReader
         }
         catch (FormatException)
         {
-            Console.WriteLine("Error: File contains invalid numbers.");
+            Console.WriteLine("Error: Invalid temperature data. Check sensor.");
             return null;
         }
     }
@@ -33,7 +33,7 @@ public class SimulatedSensorReader
         _filePath = filePath;
     }
 
-    public TemperatureData ReadFakeSerialLine()
+    public TemperatureData? ReadFakeSerialLine()
     {
         try
         {
@@ -41,7 +41,7 @@ public class SimulatedSensorReader
             string[] parts = line.Split(',');
             if (parts.Length != 3)
             {
-                Console.WriteLine("Corrupted data from sensor.");
+                Console.WriteLine("Corrupted data from sensor(s): wrong format. Check input data or sensor(s).");
                 return null;
             }
 
@@ -51,11 +51,25 @@ public class SimulatedSensorReader
 
             return new TemperatureData(freezer, fridge, ambient);
         }
-        catch (Exception ex)
+        catch (FileNotFoundException ex)
         {
-            Console.WriteLine($"Simulated read failed: {ex.Message}");
+            Console.WriteLine("Sensor data file not found: " + ex.Message);
             return null;
         }
-
+        catch (InvalidDataException ex)
+        {
+            Console.WriteLine("Sensor data missing or incomplete: " + ex.Message);
+            return null;
+        }
+        catch (FormatException ex)
+        {
+            Console.WriteLine("Data format error: " + ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Unexpected error (" + ex.GetType().Name + "): " + ex.Message);
+            return null;
+        }
     }
 }

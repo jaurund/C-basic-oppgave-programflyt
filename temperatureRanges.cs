@@ -9,13 +9,14 @@ public class TemperatureRanges
     public double AmbientMin { get; }
     public double AmbientMax { get; }
 
-    public TemperatureRanges
-    (
-    double freezerMin, double freezerMax,
-    double fridgeMin, double fridgeMax,
-    double ambientMin, double ambientMax
+    public TemperatureRanges(
+        double freezerMin,
+        double freezerMax,
+        double fridgeMin,
+        double fridgeMax,
+        double ambientMin,
+        double ambientMax
     )
-
     {
         FreezerMin = freezerMin;
         FreezerMax = freezerMax;
@@ -25,4 +26,3 @@ public class TemperatureRanges
         AmbientMax = ambientMax;
     }
 }
-
