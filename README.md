@@ -1,0 +1,1 @@
+A temperature check program designed for freezers, fridges and ambient temperature in a store. Simulates reading from arduino in its format through a .txt, and holds temperature ranges for easy editing in another .txt. 
